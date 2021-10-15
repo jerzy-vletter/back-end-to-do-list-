@@ -1,3 +1,22 @@
+* {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+    text-decoration: none;
+    color: black;
+    font-size: large;
+  }
+
+
 body{
-background-color: purple;
+background-color: rgb(15, 171, 199, 0.5);
 }
+
+a{
+    cursor: pointer;
+}
+
+

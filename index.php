@@ -1,9 +1,9 @@
 <?php
 
 require "connection.php";
-echo "hello world";
 require "mainUIPage.php";
 require "mainEngine.php";
+
 
 ?>
 
@@ -16,7 +16,8 @@ require "mainEngine.php";
     <link rel="stylesheet" href="TDL.css">
     <title>to-do-list</title>
 </head>
-<body onload="addTables()">
-    <?php ?>
+<body>
+    <a id="createItem" href="createItem.php">add item</a>
+    <a id="deleteItem" href="deleteItem.php">delete item</a>
 </body>
 </html>
