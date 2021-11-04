@@ -1,5 +1,7 @@
 <?php
 
+#did is de page waar de lijsten gedisplayed worden, hier kan je ook nieuwe lijsten toevoegen, bewerken en verwijderen
+
 require "connection.php";
 require "mainUIPage.php";
 require "mainEngine.php";
@@ -26,9 +28,9 @@ $result = $stmt->fetchAll();
         
         <table>
             <tr>
-                <th>Listname</th>
-                <th>Update</th>
-                <th>Verwijderen</th>
+                <th>Lijstnaam</th>
+                <th>Lijst updaten</th>
+                <th>Lijst verwijderen</th>
             </tr>
             <?php foreach($result as $row){ ?> 
                 <!-- Alle data van de opgehaalde rij in table row stoppen -->
