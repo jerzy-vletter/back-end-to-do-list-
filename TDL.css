@@ -15,8 +15,15 @@ body{
 background-color: rgb(15, 171, 199, 0.5);
 }
 
-a{
-    cursor: pointer;
+button{
+  border-radius: 4px;
+  padding: 10px 24px;
+  
+}
+
+td, th {
+  border: 2px solid rgb(0, 0, 0);
+  padding: 0.5rem;
 }
 
 

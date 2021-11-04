@@ -6,8 +6,9 @@ require "mainEngine.php";
 
 # checks if the corresponding form on the page uses POST to send data, header in just a redirect.
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $listname = $_POST['listName'];
-    createList($conn, $listname);
+    $listname = $_POST['listname'];
+    $taakname = $_POST['taakname'];
+    createList($conn, $taakname, $listname);
 
     header("location: index.php");
 }
@@ -21,8 +22,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </head>
     <body>
         <form method="post">
-        
-            Name:  <input type="text" name="listName" placeholder="listname"><br />
+            Taakname:   <input type="text" name="taakname" placeholder="taakname"><br/>
+            Listname:   <input type="text" name="listname" placeholder="listname"><br/>
             <input type="submit" name="submit" value="create item" />
         </form>
 
