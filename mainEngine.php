@@ -5,12 +5,11 @@
 
 
 #inserting data from the add item form into the database
-function createList($conn, $taakname, $listname){
+function createList($conn, $listname){
 
     #insert using data created and made into variables on the createItem.php page.
-        $pdoQuery = "INSERT INTO list(name, list) VALUES (:taakname, :listname)"; 
+        $pdoQuery = "INSERT INTO list(name) VALUES (:listname)"; 
         $pdoQuery_run = $conn->prepare($pdoQuery);
-        $pdoQuery_run->bindParam(':taakname', $taakname);
         $pdoQuery_run->bindParam(':listname', $listname);
         $pdoQuery_run->execute();
 }

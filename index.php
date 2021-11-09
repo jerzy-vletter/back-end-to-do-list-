@@ -22,8 +22,7 @@ $result = $stmt->fetchAll();
         <title>to-do-list</title>
     </head>
     <body>  
-        <a id="createItem" href="createItem.php">add item</a>
-        <a id="deleteItem" href="deleteItem.php">delete item</a>
+        <a id="createList" href="createList.php">add lijst</a>
         <br></br>
         
         <table>
@@ -35,7 +34,7 @@ $result = $stmt->fetchAll();
             <?php foreach($result as $row){ ?> 
                 <!-- Alle data van de opgehaalde rij in table row stoppen -->
             <tr>
-                <td><?php echo $row['list']; ?></td>
+                <td><?php echo $row['name']; ?></td>
                 <td><a href="editItem.php?id=<?php echo $row['id']; ?>">Update</a></td>
                 <td><a href="deleteItem.php?id=<?php echo $row['id']; ?>">Verwijderen</a></td>
             </tr>    
