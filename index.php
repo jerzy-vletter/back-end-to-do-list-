@@ -23,7 +23,9 @@ $result = $stmt->fetchAll();
     </head>
     <body>  
         <a id="createList" href="createList.php">add lijst</a>
+        <a id="createList" href="createItem.php">add item</a>
         <br></br>
+        
         
         <table>
             <tr>
