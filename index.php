@@ -3,7 +3,6 @@
 #did is de page waar de lijsten gedisplayed worden, hier kan je ook nieuwe lijsten toevoegen, bewerken en verwijderen
 
 require "connection.php";
-require "mainUIPage.php";
 require "mainEngine.php";
 
 $sql = 'SELECT * FROM list';
@@ -32,13 +31,15 @@ $result = $stmt->fetchAll();
                 <th>Lijstnaam</th>
                 <th>Lijst updaten</th>
                 <th>Lijst verwijderen</th>
+                <th>Item toevoegen</th>
             </tr>
             <?php foreach($result as $row){ ?> 
                 <!-- Alle data van de opgehaalde rij in table row stoppen -->
             <tr>
                 <td><?php echo $row['name']; ?></td>
-                <td><a href="editItem.php?id=<?php echo $row['id']; ?>">Update</a></td>
-                <td><a href="deleteItem.php?id=<?php echo $row['id']; ?>">Verwijderen</a></td>
+                <td><a href="editList.php?id=<?php echo $row['id']; ?>">Update</a></td>
+                <td><a href="deleteList.php?id=<?php echo $row['id']; ?>">Verwijderen</a></td>
+                <td><a href="createItem.php?id=<?php echo $row['id']; ?>">Toevoegen</a></td>
             </tr>    
             <?php } ?>
         </table>

@@ -1,7 +1,6 @@
 <?php
 
 require "connection.php";
-require "mainUIPage.php";
 require "mainEngine.php";
 
 # checks if the corresponding form on the page uses POST to send data, header in just a redirect.

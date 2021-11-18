@@ -1,7 +1,6 @@
 <?php 
 
 require "connection.php";
-require "mainUIPage.php";
 require "mainEngine.php";
 
 # getting the id from the url.
