@@ -27,19 +27,19 @@ function editList($conn, $EditListName, $id){
 
 # == all of the crud stuff for the item part of the project. == 
 
-function createItem($conn, $name, $text, $listId){
+function createItem($conn, $name, $text, $status, $listId){
     #insert using data created and made into ariables on the createItem.php page.
-    $pdoQuery = "INSERT INTO subjects(name, text, listId) VALUES (:name, :text,  :listId)"; 
+    $pdoQuery = "INSERT INTO subjects(name, text, tags, listId) VALUES (:name, :text, :status , :listId)"; 
     $pdoQuery_run = $conn->prepare($pdoQuery);
     $pdoQuery_run->bindParam('name', $name);
     $pdoQuery_run->bindParam('text', $text);
+    $pdoQuery_run->bindParam('status', $status);
     $pdoQuery_run->bindParam('listId', $listId);
     $pdoQuery_run->execute();
 }
 
 # using the data that was inserted into the form on the editItem.php page to edit the dB entry with the matching id.
 function editItem($conn, $name, $text, $status ,$id){
-    var_dump($name, $text, $status);
     $pdoQuery = "UPDATE subjects SET `name`=:name, `text`=:text, `tags`=:status WHERE id =:id";
     $stmt = $conn->prepare($pdoQuery);
     $stmt -> bindParam('name', $name);
