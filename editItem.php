@@ -13,7 +13,9 @@ if(isset($_POST['submit'])){
     $name = $_POST['name'];
     $text = $_POST['text'];
     $status = $_POST['status'];
-    editItem($conn, $name, $text, $status ,$id);
+    $duur = $_POST['duur'];
+    $duur2 = $_POST['duur2'];
+    editItem($conn, $name, $text, $status, $duur, $duur2, $id);
 
     header("location: index.php");
 }
@@ -27,7 +29,7 @@ $row = $select->fetch();
 <form method="POST">
     name:   <input type="text" name="name" value="<?php echo $row["name"]; ?>"><br/>
     text:   <input type="text" name="text" value="<?php echo $row['text']; ?>"><br/>
-    <p> status van taak    <?php # doesn't work ?>
+    <p> status van taak:    
         <select name="status">
             <option value="">Select...</option>
             <option value="niet gestart">niet gestart</option>
@@ -35,5 +37,7 @@ $row = $select->fetch();
             <option value="done">done</option>
         </select>
     </p>
+    duur(nummer): <input type="text" name="duur" value="<?php echo $row['tijd']; ?>"><br/>
+    duur(tijd):   <input type="text" name="duur2" value="<?php echo $row['tijd2']; ?>"><br/>
     <input type="submit" name="submit" value="update">
 </form>

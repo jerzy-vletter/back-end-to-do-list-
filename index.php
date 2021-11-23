@@ -60,6 +60,7 @@ $result = $stmt->fetchAll();
                 <th>Itemnaam</th>
                 <th>Item text</th>
                 <th>status</th>
+                <th>duur</th>
                 <th>item editen</th>
                 <th>item verwijderen</th>
             </tr>
@@ -67,8 +68,9 @@ $result = $stmt->fetchAll();
                         <!-- alle data van de opgehaalde rij in subjects in row stoppen -->
                         <tr>
                             <td><?php echo $row['name']; ?></td>
-                            <td><?php echo $row['text'] ?></td>
-                            <td><?php echo $row['tags'] ?></td>
+                            <td><?php echo $row['text']; ?></td>
+                            <td><?php echo $row['tags']; ?></td>
+                            <td><?php echo $row['tijd']; echo ' '; echo $row['tijd2']; ?></td>
                             <td><a id="editB" href="editItem.php?id=<?php echo $row['id']; ?>">edit</a></td>
                             <td><a id="deleteB" href="deleteItem.php?id=<?php echo $row['id']; ?>">delete</a></td>
 
