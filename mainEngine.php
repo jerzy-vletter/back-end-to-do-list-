@@ -3,6 +3,7 @@
 
 #this is the "brain" behind the project, all the function runs will be executed from here
 
+# == all the crud stuff for the list part of the project. ==
 
 #inserting data from the add item form into the database
 function createList($conn, $listname){
@@ -13,6 +14,18 @@ function createList($conn, $listname){
     $pdoQuery_run->bindParam(':listname', $listname);
     $pdoQuery_run->execute();
 }
+
+#using the data that was inserted into the form on the editList.php page to edit ihe dB entry with the matching id in the list table
+function editList($conn, $EditListName, $id){
+    $pdoQuery = "UPDATE list SET name = ' list = '".$EditListName."' WHERE id=$id";
+    $stmt = $conn->prepare($pdoQuery);
+    $stmt->execute();
+}
+
+
+# == end of the crud for list part of the project == 
+
+# == all of the crud stuff for the item part of the project. == 
 
 function createItem($conn, $name, $text, $listId){
     #insert using data created and made into ariables on the createItem.php page.
@@ -25,18 +38,31 @@ function createItem($conn, $name, $text, $listId){
 }
 
 # using the data that was inserted into the form on the editItem.php page to edit the dB entry with the matching id.
-function editItem($conn, $EditTaakName, $EditListName, $id){
-
-    $pdoQuery = "UPDATE list SET name = '".$EditTaakName."', list = '".$EditListName."' WHERE id=$id";
+function editItem($conn, $name, $text, $status ,$id){
+    var_dump($name, $text, $status);
+    $pdoQuery = "UPDATE subjects SET `name`=:name, `text`=:text, `tags`=:status WHERE id =:id";
     $stmt = $conn->prepare($pdoQuery);
+    $stmt -> bindParam('name', $name);
+    $stmt -> bindParam('text', $text);
+    $stmt -> bindParam('status', $status);
+    $stmt -> bindParam('id', $id);
     $stmt->execute();
+    
 };
 
 # deleting the dB entry with a matching id that was selected.
-function deleteItem($conn, $id){
+function deleteList($conn, $id){
     $query = "DELETE FROM list WHERE id=$id";
     $stmt = $conn->prepare($query);
     $stmt->execute();
 }
+
+function deleteItem($conn, $id){
+    $query = "DELETE FROM subjects WHERE id=$id";
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+}
+
+# == end of the crud stuff for the item part of the project. ==
 
 ?>

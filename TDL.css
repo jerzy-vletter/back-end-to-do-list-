@@ -10,6 +10,9 @@
     font-size: large;
   }
 
+a:link{
+  text-decoration: underline;
+}
 
 body{
 background-color: rgb(15, 171, 199, 0.5);

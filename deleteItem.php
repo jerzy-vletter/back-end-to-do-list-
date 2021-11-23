@@ -3,6 +3,7 @@
 require "connection.php";
 require "mainEngine.php";
 
+
 # getting the id from the url
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -18,16 +19,17 @@ if(isset($_POST['deny'])){
 }
 
 # getting the data out of the dB using the id that was gotten from the url.
-$select = $conn->query("SELECT * FROM list WHERE id=$id");
+$select = $conn->query("SELECT * FROM subjects WHERE id=$id");
 $row = $select->fetch();
 
 ?>
 
-<h1> <?php echo "you are about to delete the ". $row["list"] . " list, do you want to continue?"; ?> </h1>
+<h1> <?php echo "you are about to delete the ". $row["name"] . " item, do you want to continue?"; ?> </h1>
 
 <form method="post">
     <input type="submit" name="confirm" value="yes"/>
     <input type="submit" name="deny" value="no"/>
 </form>
+
 
 
