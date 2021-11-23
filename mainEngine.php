@@ -69,4 +69,12 @@ function deleteItem($conn, $id){
 
 # == end of the crud stuff for the item part of the project. ==
 
+
+# sorting function for the mane page
+function sortDuur($conn, $duur, $id){
+    $query = "SELECT * FROM subjects ORDER BY :duur ASC";
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+    
+}
 ?>

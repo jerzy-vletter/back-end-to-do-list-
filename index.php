@@ -2,7 +2,7 @@
 
 
 
-#did is de page waar de lijsten gedisplayed worden, hier kan je ook nieuwe lijsten toevoegen, bewerken en verwijderen
+#did is de page waar de lijsten gedisplayed worden, hier kan je ook nieuwe alle crud paginaas aanroepen
 
 require "connection.php";
 require "mainEngine.php";
