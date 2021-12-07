@@ -70,11 +70,12 @@ function deleteItem($conn, $id){
 # == end of the crud stuff for the item part of the project. ==
 
 
-# sorting function for the mane page
-function sortDuur($conn, $duur, $id){
+# sorting function for the main page
+function sortDuur($conn, $duur){
     $query = "SELECT * FROM subjects ORDER BY :duur ASC";
     $stmt = $conn->prepare($query);
-    $stmt->execute();
-    
+    $stmt -> bindParam('duur', $duur);
+    $sorted = $stmt->execute();
+    var_dump($sorted);
 }
 ?>

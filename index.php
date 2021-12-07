@@ -12,6 +12,10 @@ $stmt = $conn->prepare($sql);
 $stmt->execute();
 $result = $stmt->fetchAll();
 
+if (array_key_exists('sortDuur', $_POST)){
+    sortDuur($conn, $duur);
+};
+
 
 ?>
 
@@ -26,6 +30,10 @@ $result = $stmt->fetchAll();
     </head>
     <body>  
         <a id="createList" href="createList.php">add lijst</a>
+        <form method="post">
+            <input type="submit" name="sortDuur"
+                   class="button" value="sort op duur" />
+        </form>
         <br></br>
         
         
@@ -64,7 +72,7 @@ $result = $stmt->fetchAll();
                 <th>item editen</th>
                 <th>item verwijderen</th>
             </tr>
-                   <?php foreach($result2 as $row){ ?>
+                   <?php foreach($sorted as $row){ ?>
                         <!-- alle data van de opgehaalde rij in subjects in row stoppen -->
                         <tr>
                             <td><?php echo $row['name']; ?></td>
