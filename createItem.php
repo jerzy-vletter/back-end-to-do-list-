@@ -32,7 +32,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 <option value="">Select...</option>
                                 <option value="niet gestart">Niet gestart</option>
                                 <option value="in progress">In progress</option>
-                                <option value="finished">Finished</option>
+                                <option value="done">Finished</option>
                             </select>
             </p>
             <p>

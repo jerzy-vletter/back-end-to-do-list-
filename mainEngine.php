@@ -65,8 +65,10 @@ function deleteItem($conn, $id){
     $query = "DELETE FROM subjects WHERE id=$id";
     $stmt = $conn->prepare($query);
     $stmt->execute();
+
 }
 
 # == end of the crud stuff for the item part of the project. ==
+
 
 ?>
