@@ -5,6 +5,7 @@ require "mainEngine.php";
 
 # checks if the corresponding form on the page uses POST to send data, header in just a redirect.
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+
     $listname = $_POST['listname'];
     createList($conn, $listname);
 

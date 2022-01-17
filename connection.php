@@ -1,10 +1,12 @@
 <?php
 
+function createConnection(){
 
 $servername = "localhost";
 $username = "root";
 $password = "mysql";
 $database = "back-end";
+$conn = null;
 
 try {
   $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
@@ -12,5 +14,7 @@ try {
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch(PDOException $e) {
   echo "Connection failed: " . $e->getMessage();
+}
+return $conn;
 }
 ?>

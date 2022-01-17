@@ -7,13 +7,9 @@
 require "connection.php";
 require "mainEngine.php";
 
-$sql = 'SELECT * FROM list';
-$stmt = $conn->prepare($sql);
-$stmt->execute();
-$result = $stmt->fetchAll();
+$filterMod = '';
 
-
-
+$result = fetchLists();
 
 ?>
 
@@ -29,7 +25,7 @@ $result = $stmt->fetchAll();
     <body>  
         <a id="createList" href="createList.php">add lijst</a>
         <form method="post">
-            <input  type="submit" name="sortDuur" class="button" value="sort op duur" />
+            <input  type="submit" name="sortDuur" class="button" value="sort op duur"/>
             <input  type="submit" name="filterA" class="button" value="filter op taken die niet gestart zijn"/>
             <input  type="submit" name="filterB" class="button" value="filter op taken die bezig zijn"/>
             <input  type="submit" name="filterC" class="button" value="filter op taken die klaar zijn"/>
@@ -53,30 +49,39 @@ $result = $stmt->fetchAll();
                 <td><a id="editL" href="editList.php?id=<?php echo $row['id']; ?>">Update</a></td>
                 <td><a id="deleteL" href="deleteList.php?id=<?php echo $row['id']; ?>">Verwijderen</a></td>
                 <td><a id="createI" href="createItem.php?id=<?php echo $row['id']; ?>">Toevoegen</a></td>
-                <?php $tempId = $row['id']; 
+                <?php
                 
-                $sql = 'SELECT * FROM subjects WHERE listId=' . $row['id'];
-                $stmt = $conn->prepare($sql);
-                $stmt->execute([$tempId]);
-                $result2 = $stmt->fetchAll();
+                $result2 = fetchTasksFromList($row['id']);
 
                 if ($_POST['sortDuur']){
-                    $sql = 'SELECT * FROM subjects WHERE listId='. $row['id'] . ' ORDER BY tijd';
-                    $stmt = $conn->prepare($sql);
-                    $stmt->execute([$tempId]);
-                    $result2 = $stmt->fetchAll();
-                };                  
+                    $result2 = sortDuur($row['id']);   
+                }
 
                 if ($_POST['filterA']){
-                    $filter = "niet gestart";
-                    $sql = "SELECT * FROM subjects WHERE tags= :filter";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bindParam(':filter', $filter);
-                    $stmt->execute();
-                    $result2 = $stmt->fetchall();
-                };
-                
+                    $filterMod = 'niet gestart';
+                    $result2 = filterSubjects($filterMod, $row['id']);
+                }
+
                 if ($_POST['filterB']){
+                    $filterMod = 'in progress';
+                    $result2 = filterSubjects($filterMod, $row['id']);
+                }
+
+                if ($_POST['filterC']){
+                    $filterMod = 'done';
+                    $result2 = filterSubjects($filterMod, $row['id']);
+                }
+
+                if ($_POST['filterD']){
+                    $filterMod = '';
+                    $result2 = filterSubjects($filterMod, $row['id']);
+                }
+                
+
+               # start of the filter function (at this moment not working)
+                
+                
+               /* if ($_POST['filterB']){
                     $filter = "in progress";
                     $sql = "SELECT * FROM subjects WHERE tags= :filter";
                     $stmt = $conn->prepare($sql);
@@ -101,7 +106,7 @@ $result = $stmt->fetchAll();
                     $stmt->bindParam(':filter', $filter);
                     $stmt->execute();
                     $result2 = $stmt->fetchall();
-                };
+                }; */
                 
                 ?>
                 
@@ -130,3 +135,4 @@ $result = $stmt->fetchAll();
         </table>
     </body>
 </html>
+
