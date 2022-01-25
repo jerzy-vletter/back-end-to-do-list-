@@ -4,7 +4,6 @@
 
 #did is de page waar de lijsten gedisplayed worden, hier kan je ook nieuwe alle crud paginaas aanroepen
 
-require "connection.php";
 require "mainEngine.php";
 
 $filterMod = '';
@@ -30,6 +29,7 @@ $result = fetchLists();
             <input  type="submit" name="filterB" class="button" value="filter op taken die bezig zijn"/>
             <input  type="submit" name="filterC" class="button" value="filter op taken die klaar zijn"/>
             <input  type="submit" name="filterD" class="button" value="filter op overige taken">
+            <input  type="submit" name="showAll" class="button" value="show all">
         </form>
         <br></br>
         
@@ -76,38 +76,11 @@ $result = fetchLists();
                     $filterMod = '';
                     $result2 = filterSubjects($filterMod, $row['id']);
                 }
-                
 
-               # start of the filter function (at this moment not working)
-                
-                
-               /* if ($_POST['filterB']){
-                    $filter = "in progress";
-                    $sql = "SELECT * FROM subjects WHERE tags= :filter";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bindParam(':filter', $filter);
-                    $stmt->execute();
-                    $result2 = $stmt->fetchall();
+                if ($_POST['showAll']){
+                    $result2 = $result2;
                 };
-                
-                if ($_POST['filterC']){
-                    $filter = "done";
-                    $sql = "SELECT * FROM subjects WHERE tags= :filter";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bindParam(':filter', $filter);
-                    $stmt->execute();
-                    $result2 = $stmt->fetchall();
-                };
-                
-                if ($_POST['filterD']){
-                    $filter = '';
-                    $sql = "SELECT * FROM subjects WHERE tags= :filter";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bindParam(':filter', $filter);
-                    $stmt->execute();
-                    $result2 = $stmt->fetchall();
-                }; */
-                
+                    
                 ?>
                 
             </tr>
@@ -119,18 +92,17 @@ $result = fetchLists();
                 <th>item editen</th>
                 <th>item verwijderen</th>
             </tr>
-                   <?php foreach($result2 as $row){ ?>
-                        <!-- alle data van de opgehaalde rij in subjects in row stoppen -->
-                        <tr>
-                            <td><?php echo $row['name']; ?></td>
-                            <td><?php echo $row['text']; ?></td>
-                            <td><?php echo $row['tags']; ?></td>
-                            <td><?php echo $row['tijd']; echo ' '; echo $row['tijd2']; ?></td>
-                            <td><a id="editB" href="editItem.php?id=<?php echo $row['id']; ?>">edit</a></td>
-                            <td><a id="deleteB" href="deleteItem.php?id=<?php echo $row['id']; ?>">delete</a></td>
-
-                        </tr>
-                    <?php } ?>
+                <?php foreach($result2 as $row){ ?>
+                    <!-- alle data van de opgehaalde rij in subjects in row stoppen -->
+                    <tr>
+                        <td><?php echo $row['name']; ?></td>
+                        <td><?php echo $row['text']; ?></td>
+                        <td><?php echo $row['tags']; ?></td>
+                        <td><?php echo $row['tijd']; echo ' '; echo $row['tijd2']; ?></td>
+                        <td><a id="editB" href="editItem.php?id=<?php echo $row['id']; ?>">edit</a></td>
+                        <td><a id="deleteB" href="deleteItem.php?id=<?php echo $row['id']; ?>">delete</a></td>
+                    </tr>
+                <?php } ?>
             <?php } ?>
         </table>
     </body>

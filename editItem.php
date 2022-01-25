@@ -1,7 +1,7 @@
 <?php 
 
-require "connection.php";
 require "mainEngine.php";
+
 
 # getting the id from the url.
 if (isset($_GET['id'])) {
@@ -15,29 +15,28 @@ if(isset($_POST['submit'])){
     $status = $_POST['status'];
     $duur = $_POST['duur'];
     $duur2 = $_POST['duur2'];
-    editItem($conn, $name, $text, $status, $duur, $duur2, $id);
+    editItem($name, $text, $status, $duur, $duur2, $id);
 
     header("location: index.php");
 }
 
 # selecting all data from the list table using the id gotten from the url to use it in the form.
-$select = $conn->query("SELECT * FROM subjects WHERE id=$id");
-$row = $select->fetch();
+    $data = getDataFromSubject($id);
 
 ?>
 
 <form method="POST">
-    name:   <input type="text" name="name" value="<?php echo $row["name"]; ?>"><br/>
-    text:   <input type="text" name="text" value="<?php echo $row['text']; ?>"><br/>
+    name:   <input type="text" name="name" value="<?php echo $data[1]; ?>"><br/>
+    text:   <input type="text" name="text" value="<?php echo $data[2]; ?>"><br/>
     <p> status van taak:    
-        <select name="status">
+        <select name="status" >
             <option value="">Select...</option>
             <option value="niet gestart">niet gestart</option>
             <option value="in progress">in progress</option>
             <option value="done">done</option>
         </select>
     </p>
-    duur(nummer): <input type="text" name="duur" value="<?php echo $row['tijd']; ?>"><br/>
-    duur(tijd):   <input type="text" name="duur2" value="<?php echo $row['tijd2']; ?>"><br/>
+    duur(nummer): <input type="text" name="duur" value="<?php echo $data[4] ?>"><br/>
+    duur(tijd):   <input type="text" name="duur2" value="<?php echo $data[5] ?>"><br/>
     <input type="submit" name="submit" value="update">
 </form>

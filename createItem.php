@@ -1,6 +1,5 @@
 <?php
 
-require "connection.php";
 require "mainEngine.php";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -10,7 +9,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $duur = $_POST['duur'];
     $duur2 = $_POST['duur2'];
     $listId = $_GET['id'];
-    createItem($conn, $name, $text, $status, $duur, $duur2, $listId);
+    createItem($name, $text, $status, $duur, $duur2, $listId);
 
     header("location: index.php");
 }

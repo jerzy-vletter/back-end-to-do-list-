@@ -1,16 +1,15 @@
 <?php
 
-require "connection.php";
 require "mainEngine.php";
 
 # getting the id from the url
 if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+    $id = $_GET['id'];  
 }
 
 # the execute portion of what button you have clicked
 if(isset($_POST['confirm'])){
-    deleteList($conn, $id);
+    deleteList($id);
     header("location: index.php");
 }
 if(isset($_POST['deny'])){
@@ -18,12 +17,11 @@ if(isset($_POST['deny'])){
 }
 
 # getting the data out of the dB using the id that was gotten from the url.
-$select = $conn->query("SELECT * FROM list WHERE id=$id");
-$row = $select->fetch();
+$data = getDataFromList($id);
 
 ?>
 
-<h1> <?php echo "you are about to delete the ". $row["name"] . " list, do you want to continue?"; ?> </h1>
+<h1> <?php echo "you are about to delete the ". $data[1] . " list, do you want to continue?"; ?> </h1>
 
 <form method="post">
     <input type="submit" name="confirm" value="yes"/>

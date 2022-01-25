@@ -1,6 +1,5 @@
 <?php 
 
-require "connection.php";
 require "mainEngine.php";
 
 # getting the id from the url.
@@ -10,16 +9,15 @@ if (isset($_GET['id'])) {
 
 # edits the items in the list, using the data from the form below
 if(isset($_POST['submit'])){
-    $EditListName = $_POST['EditListName'];
-    editList($conn, $EditListName, $id);
-
+    $editListName = $_POST['editListName'];
+    editList($editListName, $id);
     header("location: index.php");
 }
 
-$select = $conn->query("SELECT * FROM list WHERE id=$id");
-$row = $select->fetch();
+$data = getDataFromList($id);
 ?>
 
-<form action="POST">
-    Listname:   <input type="text" name="EditListName" value="<?php echo $row["list"]; ?>"><br/>
+<form method="POST">
+    Listname:   <input type="text" name="editListName" value="<?php echo $data[1]; ?>"><br/>
+    <input type="submit" name="submit" value="update">
 </form>

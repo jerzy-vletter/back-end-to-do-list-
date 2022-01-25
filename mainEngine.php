@@ -19,10 +19,21 @@ function createList($listname){
 }
 
 #using the data that was inserted into the form on the editList.php page to edit ihe dB entry with the matching id in the list table
-function editList($EditListName, $id){
+function editList($editListName, $id){
     $conn = createConnection();
-    $pdoQuery = "UPDATE list SET name = ' list = '".$EditListName."' WHERE id=$id";
-    $stmt = $conn->prepare($pdoQuery);
+    $sql = "UPDATE list SET name = :editListName WHERE id= :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':editListName', $editListName);
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+}
+
+# deleting the dB entry with a matching id that was selected.
+function deleteList($id){
+    $conn = createConnection();
+    $sql = "DELETE FROM list WHERE id= :id";
+    $stmt = $conn->prepare($sql);
+    $stmt -> bindParam('id', $id);
     $stmt->execute();
 }
 
@@ -46,7 +57,7 @@ function createItem($name, $text, $status, $duur, $duur2, $listId){
 }
 
 # using the data that was inserted into the form on the editItem.php page to edit the dB entry with the matching id.
-function editItem($conn, $name, $text, $status, $duur, $duur2, $id){
+function editItem($name, $text, $status, $duur, $duur2, $id){
     $conn = createConnection();
     $pdoQuery = "UPDATE subjects SET `name`=:name, `text`=:text, `tags`=:status, `tijd`=:duur, `tijd2`=:duur2 WHERE id =:id";
     $stmt = $conn->prepare($pdoQuery);
@@ -60,18 +71,12 @@ function editItem($conn, $name, $text, $status, $duur, $duur2, $id){
     
 };
 
-# deleting the dB entry with a matching id that was selected.
-function deleteList($conn, $id){
-    $conn = createConnection();
-    $query = "DELETE FROM list WHERE id=$id";
-    $stmt = $conn->prepare($query);
-    $stmt->execute();
-}
 
-function deleteItem($conn, $id){
-    
-    $query = "DELETE FROM subjects WHERE id=$id";
-    $stmt = $conn->prepare($query);
+function deleteItem($id){
+    $conn = createConnection();
+    $sql = "DELETE FROM subjects WHERE id= :id";
+    $stmt = $conn->prepare($sql);
+    $stmt -> bindParam('id', $id);
     $stmt->execute();
 
 }
@@ -121,5 +126,24 @@ function filterSubjects($filterMod, $listId){
     return $result;
 }
 
+function getDataFromSubject($id){
+    $conn = createConnection();
+    $sql = "SELECT * FROM subjects WHERE id= :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam('id', $id);
+    $stmt->execute();
+    $result = $stmt->fetch();
+    return $result;
+}
+
+function getDataFromList($id){
+    $conn = createConnection();
+    $sql = "SELECT * FROM list WHERE id= :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam('id', $id);
+    $stmt->execute();
+    $result = $stmt->fetch();
+    return $result;
+}
 
 ?>

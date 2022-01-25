@@ -23,3 +23,6 @@ to do today (19/11/2021)
     - item selection (mogelijk door id van het item mee te geven in de url en die op te halen) (reworked tot [maak de items crud able]) (done) 
     - display items onto the page while sorting them to the list they below to, using listId. (done)
     - double check with ed. (niet aanwezig)
+
+
+    - 

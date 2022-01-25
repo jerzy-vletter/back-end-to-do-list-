@@ -1,8 +1,6 @@
 <?php 
 
-require "connection.php";
 require "mainEngine.php";
-
 
 # getting the id from the url
 if (isset($_GET['id'])) {
@@ -11,7 +9,7 @@ if (isset($_GET['id'])) {
 
 # the execute portion of what button you have clicked
 if(isset($_POST['confirm'])){
-    deleteItem($conn, $id);
+    deleteItem($id);
     header("location: index.php");
 }
 if(isset($_POST['deny'])){
@@ -19,12 +17,11 @@ if(isset($_POST['deny'])){
 }
 
 # getting the data out of the dB using the id that was gotten from the url.
-$select = $conn->query("SELECT * FROM subjects WHERE id=$id");
-$row = $select->fetch();
+$data = getDataFromSubject($id);
 
 ?>
 
-<h1> <?php echo "you are about to delete the ". $row["name"] . " item, do you want to continue?"; ?> </h1>
+<h1> <?php echo "you are about to delete the ". $data[1] . " item, do you want to continue?"; ?> </h1>
 
 <form method="post">
     <input type="submit" name="confirm" value="yes"/>
