@@ -51,6 +51,7 @@ $result = fetchLists();
                 <td><a id="createI" href="createItem.php?id=<?php echo $row['id']; ?>">Toevoegen</a></td>
                 <?php
                 
+                /* function block, contains all the function executables for sorting, filtering and showing all the items after filtering */  
                 $result2 = fetchTasksFromList($row['id']);
 
                 if ($_POST['sortDuur']){
@@ -80,7 +81,9 @@ $result = fetchLists();
                 if ($_POST['showAll']){
                     $result2 = $result2;
                 };
-                    
+                
+                /* end of function block */
+                
                 ?>
                 
             </tr>

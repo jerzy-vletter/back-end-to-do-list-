@@ -71,7 +71,7 @@ function editItem($name, $text, $status, $duur, $duur2, $id){
     
 };
 
-
+# using the data that matches the id of the item in the db, it will delete that item if the condition for execution is met (check funtion in the index page to see and edit that condition)
 function deleteItem($id){
     $conn = createConnection();
     $sql = "DELETE FROM subjects WHERE id= :id";
@@ -83,8 +83,11 @@ function deleteItem($id){
 
 # == end of the crud stuff for the item part of the project. ==
 
-# == begin van 
+# == begin of other function executions, keeping this seperate for readability ==
+
+# fetching all data from database table list so it can be displayed on main page
 function fetchLists(){
+
     $conn = createConnection();
     $sql = 'SELECT * FROM list';
     $stmt = $conn->prepare($sql);
@@ -93,6 +96,7 @@ function fetchLists(){
     return $result;
 }
 
+# fetching all data from database table subjects so it can be displayed on the main page in it's matching list
 function fetchTasksFromList($listId){
     
     $conn = createConnection();
@@ -104,6 +108,7 @@ function fetchTasksFromList($listId){
     return $result;
 }
 
+# double checks all fetched data on a given modifier so sorts them from lowest to highest
 function sortDuur($listId){
 
     $conn = createConnection();
@@ -115,6 +120,7 @@ function sortDuur($listId){
     return $result;
 }
 
+# filters all data using a given modifier that is desided on the index page.
 function filterSubjects($filterMod, $listId){
     $conn = createConnection();
     $sql = "SELECT * FROM subjects WHERE tags= :filter AND listId= :listId";
@@ -126,6 +132,7 @@ function filterSubjects($filterMod, $listId){
     return $result;
 }
 
+# function used for crud.
 function getDataFromSubject($id){
     $conn = createConnection();
     $sql = "SELECT * FROM subjects WHERE id= :id";
@@ -136,6 +143,7 @@ function getDataFromSubject($id){
     return $result;
 }
 
+# function used for crud.
 function getDataFromList($id){
     $conn = createConnection();
     $sql = "SELECT * FROM list WHERE id= :id";
