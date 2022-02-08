@@ -8,7 +8,7 @@ if (isset($_GET['id'])) {
 }
 
 # edits the items in the list, using the data from the form below
-if(isset($_POST['submit'])){
+if(isset($_POST['submit'])){ 
     $editListName = $_POST['editListName'];
     editList($editListName, $id);
     header("location: index.php");
