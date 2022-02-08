@@ -25,4 +25,6 @@ to do today (19/11/2021)
     - double check with ed. (niet aanwezig)
 
 
-    - 
+nakijken notes
+- zoek even server request method.
+-

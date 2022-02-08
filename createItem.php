@@ -24,10 +24,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </head>
     <body>
         <form method="post">
-            Itemname:   <input type="text" name="name" placeholder="Itemname"><br/>
-            Text in item:   <input type="text" name="text" placeholder="text"><br/>
+            Itemname:   <input type="text" name="name" placeholder="Itemname" required><br/>
+            Text in item:   <input type="text" name="text" placeholder="text" required><br/>
             <p>
-            status: <select name="status">
+            status: <select name="status" required>
                                 <option value="">Select...</option>
                                 <option value="niet gestart">Niet gestart</option>
                                 <option value="in progress">In progress</option>

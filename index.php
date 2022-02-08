@@ -1,8 +1,6 @@
 <?php
 
-
-
-#did is de page waar de lijsten gedisplayed worden, hier kan je ook nieuwe alle crud paginaas aanroepen
+// dit is de page waar de lijsten gedisplayed worden, hier kan je ook nieuwe alle crud paginaas aanroepen
 
 require "mainEngine.php";
 
@@ -58,29 +56,11 @@ $result = fetchLists();
                     $result2 = sortDuur($row['id']);   
                 }
 
-                if ($_POST['filterA']){
-                    $filterMod = 'niet gestart';
-                    $result2 = filterSubjects($filterMod, $row['id']);
-                }
-
-                if ($_POST['filterB']){
-                    $filterMod = 'in progress';
-                    $result2 = filterSubjects($filterMod, $row['id']);
-                }
-
-                if ($_POST['filterC']){
-                    $filterMod = 'done';
-                    $result2 = filterSubjects($filterMod, $row['id']);
-                }
-
-                if ($_POST['filterD']){
-                    $filterMod = '';
-                    $result2 = filterSubjects($filterMod, $row['id']);
-                }
-
-                if ($_POST['showAll']){
-                    $result2 = $result2;
-                };
+                if ($_POST['filterA']) $result2 = filterSubjects('niet gestart', $row['id']);
+                if ($_POST['filterB']) $result2 = filterSubjects('in progress', $row['id']);
+                if ($_POST['filterC']) $result2 = filterSubjects("done", $row['id']);
+                if ($_POST['filterD']) $result2 = filterSubjects('', $row['id']);
+                if ($_POST['showAll']) $result2 = $result2;
                 
                 /* end of function block */
                 

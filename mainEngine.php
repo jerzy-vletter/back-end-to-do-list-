@@ -35,6 +35,7 @@ function deleteList($id){
     $stmt = $conn->prepare($sql);
     $stmt -> bindParam('id', $id);
     $stmt->execute();
+
     $sql2 = "DELETE FROM subjects WHERE listId= :id";
     $stmt2 = $conn->prepare($sql2);
     $stmt2 -> bindParam('id',$id);
@@ -157,8 +158,5 @@ function getDataFromList($id){
     $result = $stmt->fetch();
     return $result;
 }
-
-# checks if there are items that don't have lists anymore, if so it deletes them.
-
 
 ?>
